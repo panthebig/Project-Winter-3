@@ -1,5 +1,6 @@
 import java.net.*;
 import java.io.*;
+import java.util.ArrayList;
 import java.util.List;
 
 public class ServerThread extends Thread {
@@ -19,7 +20,8 @@ public class ServerThread extends Thread {
         try {
             String[] inputArr = input.split(" ");
             switch (inputArr[2]){
-                case "1":
+                case "1":{
+
                     //check if user already exists
                     for (Account acc :
                             Shared.users) {
@@ -39,9 +41,28 @@ public class ServerThread extends Thread {
                     return String.valueOf(acc.authToken);
                     //java client <ip> <port number> 1 <username>
                     //return authToken;
-                case "2":
+                }
+                case "2":{
+
+                    for (Account acc :
+                            Shared.users) {
+                        //check authtoken
+                        if (acc.authToken == Integer.parseInt(inputArr[3])){
+                            List<String> usernameList= new ArrayList<>();
+                            int i=0;
+                            for (Account acc1 :
+                                    Shared.users) {
+                                i++;
+                                usernameList.add(i +". "+ acc1.username);
+                            }
+                            return String.join("1\n",usernameList);
+                        }
+                    }
+                    return "Auth token doesn't match any account";
+
                     //java client <ip> <port number> 1 <username>
-                    break;
+
+                }
                 case "3":
                     //java client <ip> <port number> 1 <username>
                     break;

@@ -11,7 +11,7 @@ public class Server {
             System.out.println("Server is now running @ " + args[0]);
             while (true) {
                 Socket clientConnection = socket.accept();
-                ServerThread st = new ServerThread(clientConnection);// parse account in the socket?
+                ServerThread st = new ServerThread(clientConnection);
                 st.start();
             }
         } catch (Exception e) {

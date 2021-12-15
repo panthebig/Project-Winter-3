@@ -1,6 +1,8 @@
 import java.io.*;
 import java.net.*;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class Client {
     public static void main(String[] args) throws IOException {
@@ -27,8 +29,24 @@ public class Client {
         String fromServer;
         String fromUser=String.join(" ",args);
         out.println(fromUser);
+
         fromServer = in.readLine();
-        System.out.println(fromServer);
+
+        if(args[2].equals("2")){
+            List<String> usernameList= Arrays.asList(fromServer.split("\t"));
+            System.out.println(String.join("\n",usernameList));
+        }else {
+            System.out.println(fromServer);
+
+        }
+
+        /*
+        while ((fromServer = in.readLine()) != null) {
+            System.out.println(fromServer);
+            fromServer = in.readLine();
+            System.out.println(fromServer);
+
+        }*/
         /*while ((fromServer = in.readLine()) != null) {
             fiboSeries.add(Integer.parseInt(fromServer));
             System.out.println("Server: " + fiboSeries.toString() + ". Continue?[y/n]");

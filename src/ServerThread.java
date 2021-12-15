@@ -49,13 +49,16 @@ public class ServerThread extends Thread {
                         //check authtoken
                         if (acc.authToken == Integer.parseInt(inputArr[3])){
                             List<String> usernameList= new ArrayList<>();
+                            String usernames;
                             int i=0;
                             for (Account acc1 :
                                     Shared.users) {
                                 i++;
                                 usernameList.add(i +". "+ acc1.username);
                             }
-                            return String.join("1\n",usernameList);
+                            usernames = String.join("\t",usernameList);
+                            System.out.println(usernames);
+                            return usernames;
                         }
                     }
                     return "Auth token doesn't match any account";
@@ -100,6 +103,17 @@ public class ServerThread extends Thread {
 
             String input = in.readLine();
             String response = handleInput(input);
+
+            /*
+            String input = in.readLine();
+            while (true) {
+                String response = handleInput(input);
+                // continue if the user wants to continue
+                // or close the connection
+                if (response != null ) out.println(response);
+                else break;
+            }*/
+
             out.println(response);
 
             // send the first number

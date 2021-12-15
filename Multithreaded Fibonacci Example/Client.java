@@ -10,7 +10,7 @@ public class Client {
         BufferedReader in = null;
         ArrayList<Integer> fiboSeries = new ArrayList<Integer>();
 
-
+        //if (args.length==6 or 5 or 4 send them to inputarray in server thread)
         //readline push to server thread 4-5 <FN_ID> <username>
         try {
             // the first argument is the ip address of the server

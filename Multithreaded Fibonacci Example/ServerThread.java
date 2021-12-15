@@ -20,8 +20,22 @@ public class ServerThread extends Thread {
             String[] inputArr = input.split(" ");
             switch (inputArr[4]){
                 case "1":
+
+                    for (Account acc :
+                            Shared.users) {
+                        if (acc.username = inputArr[5]){
+                            break;
+                        }
+                    }
+                    return "Sorry, the user already exists";
                     //check if user already exists
+
+                    if(! inputArr[5].matches("(([a-zA-Z]+)|_)*")){
+                        return "Invalid Username";
+                    }
                     //check morfi username
+
+
                     Account acc = new Account("asd"/*arg3*/);
                     Shared.users.add(acc);
                     return String.valueOf(acc.authToken);

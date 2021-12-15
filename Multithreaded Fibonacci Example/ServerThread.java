@@ -21,19 +21,19 @@ public class ServerThread extends Thread {
             switch (inputArr[4]){
                 case "1":
 
+                    //check if user already exists
                     for (Account acc :
                             Shared.users) {
-                        if (acc.username = inputArr[5]){
-                            break;
+                        if (acc.username.equals(inputArr[5])){
+                            return "Sorry, the user already exists";
                         }
                     }
-                    return "Sorry, the user already exists";
-                    //check if user already exists
 
+
+                    //check username validity
                     if(! inputArr[5].matches("(([a-zA-Z]+)|_)*")){
                         return "Invalid Username";
                     }
-                    //check morfi username
 
 
                     Account acc = new Account("asd"/*arg3*/);
@@ -41,7 +41,6 @@ public class ServerThread extends Thread {
                     return String.valueOf(acc.authToken);
                     //java client <ip> <port number> 1 <username>
                     //return authToken;
-                    break;
                 case "2":
                     //java client <ip> <port number> 1 <username>
                     break;
@@ -68,8 +67,8 @@ public class ServerThread extends Thread {
         /*if (input.toLowerCase().equals("y")) {
             String nextNumber = String.valueOf(fib.getNext());
             return nextNumber;
-        }
-        return null;*/
+        }*/
+        return null;
     }
 
     public void run() {

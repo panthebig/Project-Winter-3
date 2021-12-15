@@ -25,8 +25,12 @@ public class Client {
 
         BufferedReader stdIn = new BufferedReader(new InputStreamReader(System.in));
         String fromServer;
-        String fromUser;
-
+        String fromUser="";
+        for (String arg :
+                args) {
+            fromUser = fromUser + " " + arg;
+        }
+        out.println(fromUser);
         /*while ((fromServer = in.readLine()) != null) {
             fiboSeries.add(Integer.parseInt(fromServer));
             System.out.println("Server: " + fiboSeries.toString() + ". Continue?[y/n]");

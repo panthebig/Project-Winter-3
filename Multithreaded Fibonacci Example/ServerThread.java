@@ -18,25 +18,23 @@ public class ServerThread extends Thread {
     private String handleInput(String input) {
         try {
             String[] inputArr = input.split(" ");
-            switch (inputArr[4]){
+            switch (inputArr[2]){
                 case "1":
-
                     //check if user already exists
                     for (Account acc :
                             Shared.users) {
-                        if (acc.username.equals(inputArr[5])){
-                            return "Sorry, the user already exists";
+                        if (acc.username.equals(inputArr[3])){
+                            return "Sorry, the user already exists.";
                         }
                     }
 
-
                     //check username validity
-                    if(! inputArr[5].matches("(([a-zA-Z]+)|_)*")){
+                    if(! inputArr[3].matches("(([a-zA-Z]+)|_)*")){
                         return "Invalid Username";
                     }
 
-
-                    Account acc = new Account("asd"/*arg3*/);
+                    //create new account
+                    Account acc = new Account(inputArr[3]);
                     Shared.users.add(acc);
                     return String.valueOf(acc.authToken);
                     //java client <ip> <port number> 1 <username>
@@ -77,14 +75,12 @@ public class ServerThread extends Thread {
             BufferedReader in = new BufferedReader(
                     new InputStreamReader(
                             socket.getInputStream()));
-            while (true) {
-                String input = in.readLine();
-                String response = handleInput(input);
-                // continue if the user wants to continue
-                // or close the connection
-                if (response == null) out.println(response);
-                else break;
-            }
+
+
+            String input = in.readLine();
+            String response = handleInput(input);
+            out.println(response);
+
             // send the first number
             /*int nextFibNumber = fib.getNext();
             out.println(nextFibNumber);

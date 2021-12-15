@@ -11,7 +11,7 @@ public class Client {
         ArrayList<Integer> fiboSeries = new ArrayList<Integer>();
 
 
-        //arg 3-4 <FN_ID> <username>
+        //readline push to server thread 4-5 <FN_ID> <username>
         try {
             // the first argument is the ip address of the server
             // while the second one is its port

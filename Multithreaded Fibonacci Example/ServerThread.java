@@ -11,7 +11,7 @@ public class ServerThread extends Thread {
         super();
         this.socket = socket;
         clientIP = socket.getInetAddress().getHostAddress();
-        Account acc = new Account();
+        //Account acc = new Account();
         //fib = new Fibonacci();
     }
 
@@ -20,6 +20,11 @@ public class ServerThread extends Thread {
             String[] inputArr = input.split(" ");
             switch (inputArr[4]){
                 case "1":
+                    //check if user already exists
+                    //check morfi username
+                    Account acc = new Account("asd"/*arg3*/);
+                    Shared.users.add(acc);
+                    return String.valueOf(acc.authToken);
                     //java client <ip> <port number> 1 <username>
                     //return authToken;
                     break;

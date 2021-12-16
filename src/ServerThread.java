@@ -126,20 +126,20 @@ public class ServerThread extends Thread {
                 }
                     //java client <ip> <port number> 4 <authToken>
 
-                case "5":
+                case "5":{
+
 
                     boolean foundAuth=false;
-                    boolean foundId=false;
                     for (Account acc :
                             Shared.users) {
                         if (acc.authToken == Integer.parseInt(inputArr[3])) {
                             foundAuth = true;
+
                             for (Message msg :
                                     acc.messageBox) {
-                                if (acc.authToken == Integer.parseInt(inputArr[3])) {
-                                    foundAuth = true;
 
-
+                                if (msg.messageId == Integer.parseInt(inputArr[4])) {
+                                    return msg.body;
                                 }
                             }
 
@@ -148,19 +148,46 @@ public class ServerThread extends Thread {
                     }
                     if(!foundAuth){
                         return "Invalid Auth Token";
+                    }else {
+                        return "Message ID does not exist";
+                    }
+
+                    //java client <ip> <port number> 5 <authToken> <message_id>
+                }
+
+                case "6":{
+
+                    boolean foundAuth=false;
+                    for (Account acc :
+                            Shared.users) {
+                        if (acc.authToken == Integer.parseInt(inputArr[3])) {
+                            foundAuth = true;
+
+                            for (Message msg :
+                                    acc.messageBox) {
+
+                                if (msg.messageId == Integer.parseInt(inputArr[4])) {
+                                    acc.messageBox.remove(msg);
+                                    return "OK";
+                                }
+                            }
+
+
+                        }
+                    }
+                    if(!foundAuth){
+                        return "Invalid Auth Token";
+                    }else {
+                        return "Message does not exist";
                     }
 
 
+                    //java client <ip> <port number> 6 <authToken> <message_id>
 
+                }
 
-                    //java client <ip> <port number> 5 <authToken> <message_id>
-
-
-                case "6":
-                    //java client <ip> <port number> 1 <username>
-                    break;
                 default:
-                    System.out.println("Make sure you used the correct FN_ID");
+                    System.out.println("Make sure you used the correct FN_ID(1-6)");
                     return null;
             }
         }catch (Exception e){

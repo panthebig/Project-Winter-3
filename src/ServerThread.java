@@ -57,7 +57,7 @@ public class ServerThread extends Thread {
                                 usernameList.add(i +". "+ acc1.username);
                             }
                             usernames = String.join("\t",usernameList);
-                            System.out.println(usernames);
+                            //System.out.println(usernames);
                             return usernames;
                         }
                     }
@@ -69,8 +69,8 @@ public class ServerThread extends Thread {
                 case "3":{
                     boolean foundAuth=false;
                     String sender="";
-                    String recipient = inputArr[3];
-                    String message = inputArr[6];
+                    String recipient = inputArr[4];
+                    String message = inputArr[5];
                     for (Account acc :
                             Shared.users) {
                         if (acc.authToken == Integer.parseInt(inputArr[3])) {
@@ -109,7 +109,6 @@ public class ServerThread extends Thread {
                                     i = "";
                                 else
                                     i = "*";
-
                                 msgList.add(msg.messageId +". from: "+ msg.sender + i );
                             }
 
@@ -139,7 +138,9 @@ public class ServerThread extends Thread {
                                     acc.messageBox) {
 
                                 if (msg.messageId == Integer.parseInt(inputArr[4])) {
-                                    return msg.body;
+                                    msg.isRead = true;
+                                    String message = "("+msg.sender+")"+msg.body;
+                                    return message;
                                 }
                             }
 

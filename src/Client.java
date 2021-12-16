@@ -32,7 +32,7 @@ public class Client {
         fromServer = in.readLine();
 
         if(args[2].equals("2") || args[2].equals("4")){
-            List<String> usernameList= Arrays.asList(fromServer.split("\t"));
+            List<String> usernameList= Arrays.asList(fromServer.split("\t"));       //TODO : unique line separator
             System.out.println(String.join("\n",usernameList));
         }else {
             System.out.println(fromServer);

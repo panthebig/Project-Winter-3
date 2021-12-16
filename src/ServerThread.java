@@ -109,6 +109,7 @@ public class ServerThread extends Thread {
                                     i = "";
                                 else
                                     i = "*";
+
                                 msgList.add(msg.messageId +". from: "+ msg.sender + i );
                             }
 

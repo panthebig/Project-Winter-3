@@ -10,7 +10,6 @@ public class Client {
         Socket socket = null;
         PrintWriter out = null;
         BufferedReader in = null;
-        ArrayList<Integer> fiboSeries = new ArrayList<Integer>();
 
         //if (args.length==6 or 5 or 4 send them to inputarray in server thread)
         //readline push to server thread 4-5 <FN_ID> <username>
@@ -32,7 +31,7 @@ public class Client {
 
         fromServer = in.readLine();
 
-        if(args[2].equals("2")){
+        if(args[2].equals("2") || args[2].equals("4")){
             List<String> usernameList= Arrays.asList(fromServer.split("\t"));
             System.out.println(String.join("\n",usernameList));
         }else {

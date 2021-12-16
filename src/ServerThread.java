@@ -61,20 +61,101 @@ public class ServerThread extends Thread {
                             return usernames;
                         }
                     }
-                    return "Auth token doesn't match any account";
+                    return "Invalid Auth Token";
 
-                    //java client <ip> <port number> 1 <username>
+                    //java client <ip> <port number> 2 <authToken>
 
                 }
-                case "3":
-                    //java client <ip> <port number> 1 <username>
-                    break;
-                case "4":
-                    //java client <ip> <port number> 1 <username>
-                    break;
+                case "3":{
+                    boolean foundAuth=false;
+                    String sender="";
+                    String recipient = inputArr[3];
+                    String message = inputArr[6];
+                    for (Account acc :
+                            Shared.users) {
+                        if (acc.authToken == Integer.parseInt(inputArr[3])) {
+                            foundAuth = true;
+                            sender = acc.username;
+                        }
+                    }
+                    if(!foundAuth){
+                        return "Invalid Auth Token";
+                    }
+
+                    for (Account acc :
+                            Shared.users) {
+
+                        if(acc.username.equals(recipient)){
+                            acc.messageBox.add( new Message(sender,recipient,message) );
+                            return "OK";
+                        }
+
+                    }
+                    return "User does not exist";
+                }
+                    //java client <ip> <port number> 3 <authToken> <recipient> <message_body>
+                case "4":{
+
+                    for (Account acc :
+                            Shared.users) {
+                        if (acc.authToken == Integer.parseInt(inputArr[3])) {
+
+                            List<String> msgList= new ArrayList<>();
+                            String messages;
+                            String i;
+                            for (Message msg :
+                                    acc.messageBox) {
+                                if(msg.isRead)
+                                    i = "";
+                                else
+                                    i = "*";
+
+                                msgList.add(msg.messageId +". from: "+ msg.sender + i );
+                            }
+
+                            messages = String.join("\t",msgList);
+                            return messages;
+
+                        }
+                    }
+                    return "Invalid Auth Token";
+
+
+
+
+                }
+                    //java client <ip> <port number> 4 <authToken>
+
                 case "5":
-                    //java client <ip> <port number> 1 <username>
-                    break;
+
+                    boolean foundAuth=false;
+                    boolean foundId=false;
+                    for (Account acc :
+                            Shared.users) {
+                        if (acc.authToken == Integer.parseInt(inputArr[3])) {
+                            foundAuth = true;
+                            for (Message msg :
+                                    acc.messageBox) {
+                                if (acc.authToken == Integer.parseInt(inputArr[3])) {
+                                    foundAuth = true;
+
+
+                                }
+                            }
+
+
+                        }
+                    }
+                    if(!foundAuth){
+                        return "Invalid Auth Token";
+                    }
+
+
+
+
+                    //java client <ip> <port number> 5 <authToken> <message_id>
+
+
                 case "6":
                     //java client <ip> <port number> 1 <username>
                     break;

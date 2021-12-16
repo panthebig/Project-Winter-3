@@ -6,6 +6,7 @@ public class Server {
         ServerSocket socket = null;
         // the first argument is the port to listen on
         String port = args[0];
+
         try {
             socket = new ServerSocket(Integer.parseInt(port));
             System.out.println("Server is now running @ " + args[0]);

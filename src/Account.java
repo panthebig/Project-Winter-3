@@ -12,10 +12,5 @@ public class Account {
 
 
 
-    /*public int createAccount(String username , int authToken){
-
-        return authToken;
-    }*/
-
 
 }

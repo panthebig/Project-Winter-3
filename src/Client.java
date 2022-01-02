@@ -39,24 +39,7 @@ public class Client {
 
         }
 
-        /*
-        while ((fromServer = in.readLine()) != null) {
-            System.out.println(fromServer);
-            fromServer = in.readLine();
-            System.out.println(fromServer);
 
-        }*/
-        /*while ((fromServer = in.readLine()) != null) {
-            fiboSeries.add(Integer.parseInt(fromServer));
-            System.out.println("Server: " + fiboSeries.toString() + ". Continue?[y/n]");
-            fromUser = stdIn.readLine();
-            if (fromUser != null) {
-                System.out.println("Client: " + fromUser);
-                out.println(fromUser);
-            }
-            // if the user does not want to continue exit the main loop
-            if (!fromUser.equals("y")) break;
-        }*/
 
         out.close();
         in.close();

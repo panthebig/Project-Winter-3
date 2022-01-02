@@ -12,8 +12,7 @@ public class ServerThread extends Thread {
         super();
         this.socket = socket;
         clientIP = socket.getInetAddress().getHostAddress();
-        //Account acc = new Account();
-        //fib = new Fibonacci();
+
     }
 
     private String handleInput(String input) {
@@ -39,8 +38,8 @@ public class ServerThread extends Thread {
                     Account acc = new Account(inputArr[3]);
                     Shared.users.add(acc);
                     return String.valueOf(acc.authToken);
+
                     //java client <ip> <port number> 1 <username>
-                    //return authToken;
                 }
                 case "2":{
 
@@ -196,10 +195,7 @@ public class ServerThread extends Thread {
             System.out.println("Please follow the correct input format.");
         }
 
-        /*if (input.toLowerCase().equals("y")) {
-            String nextNumber = String.valueOf(fib.getNext());
-            return nextNumber;
-        }*/
+
         return null;
     }
 
@@ -214,29 +210,12 @@ public class ServerThread extends Thread {
             String input = in.readLine();
             String response = handleInput(input);
 
-            /*
-            String input = in.readLine();
-            while (true) {
-                String response = handleInput(input);
-                // continue if the user wants to continue
-                // or close the connection
-                if (response != null ) out.println(response);
-                else break;
-            }*/
+
 
             out.println(response);
 
-            // send the first number
-            /*int nextFibNumber = fib.getNext();
-            out.println(nextFibNumber);
-            while (true) {
-                String input = in.readLine();
-                String response = handleInput(input);
-                // continue if the user wants to continue
-                // or close the connection
-                if (response != null) out.println(response);
-                else break;
-            }*/
+
+
             out.close();
             in.close();
             socket.close();
